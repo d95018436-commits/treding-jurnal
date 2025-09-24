@@ -1,0 +1,2339 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TREDING JURNAL TAUFIQ</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --success-color: #2ecc71;
+            --danger-color: #e74c3c;
+            --warning-color: #f39c12;
+            --light-bg: #ffffff;
+            --light-text: #333333;
+            --light-card: #f8f9fa;
+            --dark-bg: #1a1a1a;
+            --dark-text: #f8f9fa;
+            --dark-card: #2d2d2d;
+            --header-height: 60px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--light-text);
+            transition: all 0.3s ease;
+            margin: 0;
+            padding: 0;
+        }
+
+        body.dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        .brand-name {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        body.dark-mode .brand-name {
+            color: #3498db;
+        }
+
+        .navbar {
+            background-color: var(--light-card);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            height: var(--header-height);
+        }
+
+        body.dark-mode .navbar {
+            background-color: var(--dark-card);
+        }
+
+        .sidebar {
+            background-color: var(--light-card);
+            min-height: calc(100vh - var(--header-height));
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            padding-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .sidebar {
+            background-color: var(--dark-card);
+        }
+
+        .sidebar .nav-link {
+            color: var(--light-text);
+            padding: 12px 20px;
+            margin: 5px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .sidebar .nav-link {
+            color: var(--dark-text);
+        }
+
+        .sidebar .nav-link:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .sidebar .nav-link.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .main-content {
+            padding: 20px;
+            min-height: calc(100vh - var(--header-height));
+        }
+
+        .card {
+            background-color: var(--light-card);
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .card {
+            background-color: var(--dark-card);
+        }
+
+        .card-header {
+            background-color: transparent;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            font-weight: 600;
+        }
+
+        body.dark-mode .card-header {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background-color: var(--light-card);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .stat-card {
+            background-color: var(--dark-card);
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .profit {
+            color: var(--success-color);
+        }
+
+        .loss {
+            color: var(--danger-color);
+        }
+
+        .table {
+            color: var(--light-text);
+        }
+
+        body.dark-mode .table {
+            color: var(--dark-text);
+        }
+
+        .btn {
+            border-radius: 5px;
+            padding: 8px 16px;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+            border-color: var(--success-color);
+        }
+
+        .btn-danger {
+            background-color: var(--danger-color);
+            border-color: var(--danger-color);
+        }
+
+        .theme-toggle {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--light-text);
+            cursor: pointer;
+        }
+
+        body.dark-mode .theme-toggle {
+            color: var(--dark-text);
+        }
+
+        .modal-content {
+            background-color: var(--light-card);
+            color: var(--light-text);
+        }
+
+        body.dark-mode .modal-content {
+            background-color: var(--dark-card);
+            color: var(--dark-text);
+        }
+
+        .form-control, .form-select {
+            background-color: var(--light-bg);
+            color: var(--light-text);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        body.dark-mode .form-control, 
+        body.dark-mode .form-select {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: var(--light-bg);
+            color: var(--light-text);
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+        }
+
+        body.dark-mode .form-control:focus, 
+        body.dark-mode .form-select:focus {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        .filter-section {
+            background-color: var(--light-card);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        body.dark-mode .filter-section {
+            background-color: var(--dark-card);
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                top: var(--header-height);
+                left: -100%;
+                width: 250px;
+                z-index: 1000;
+                height: calc(100vh - var(--header-height));
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+
+        .mobile-menu-btn {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--light-text);
+            cursor: pointer;
+        }
+
+        body.dark-mode .mobile-menu-btn {
+            color: var(--dark-text);
+        }
+
+        .settings-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .settings-table th, .settings-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        body.dark-mode .settings-table th, 
+        body.dark-mode .settings-table td {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .report-preview {
+            background-color: white;
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .report-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 15px;
+        }
+
+        .report-title {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .report-period {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .report-summary {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .report-summary-item {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 23%;
+        }
+
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .report-table th, .report-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .report-table th {
+            background-color: #f2f2f2;
+        }
+
+        .report-footer {
+            text-align: center;
+            margin-top: 30px;
+            font-style: italic;
+            font-size: 12px;
+        }
+
+        .import-section {
+            background-color: var(--light-card);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        body.dark-mode .import-section {
+            background-color: var(--dark-card);
+        }
+
+        .file-upload {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .file-upload input[type=file] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .file-upload-label {
+            display: block;
+            padding: 10px 15px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .validation-message {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .validation-success {
+            background-color: rgba(46, 204, 113, 0.2);
+            color: var(--success-color);
+            border: 1px solid var(--success-color);
+        }
+
+        .validation-error {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: var(--danger-color);
+            border: 1px solid var(--danger-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container-fluid">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <span class="brand-name">TREDING JURNAL TAUFIQ</span>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div class="container-fluid" style="margin-top: var(--header-height);">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 col-lg-2 sidebar" id="sidebar">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" data-page="dashboard">
+                            <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="history">
+                            <i class="fas fa-history me-2"></i> Riwayat
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="report">
+                            <i class="fas fa-file-alt me-2"></i> Laporan
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="settings">
+                            <i class="fas fa-cog me-2"></i> Pengaturan
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9 col-lg-10 main-content" id="mainContent">
+                <!-- Dashboard Page -->
+                <div id="dashboardPage" class="page">
+                    <h2 class="mb-4">Dashboard</h2>
+                    
+                    <!-- Filter Section -->
+                    <div class="filter-section">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="startDate" class="form-label">Dari Tanggal</label>
+                                <input type="date" class="form-control" id="startDate">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="endDate" class="form-label">Sampai Tanggal</label>
+                                <input type="date" class="form-control" id="endDate">
+                            </div>
+                            <div class="col-md-4 d-flex align-items-end">
+                                <button class="btn btn-primary w-100" id="applyFilter">Terapkan Filter</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Stats Cards -->
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <div class="stat-label">Total Trade</div>
+                                <div class="stat-value" id="totalTrades">0</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <div class="stat-label">Winrate (%)</div>
+                                <div class="stat-value" id="winrate">0%</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <div class="stat-label">Total Pips</div>
+                                <div class="stat-value" id="totalPips">0</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="stat-card">
+                                <div class="stat-label">Total P&L</div>
+                                <div class="stat-value" id="totalPL">0</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Trade Table -->
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <span>Daftar Trade</span>
+                            <button class="btn btn-primary" id="newTradeBtn">
+                                <i class="fas fa-plus me-2"></i> Trade Baru
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <input type="text" class="form-control" id="pairSearch" placeholder="Cari Pair...">
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Tanggal & Jam</th>
+                                            <th>Pair</th>
+                                            <th>Posisi</th>
+                                            <th>Lot Size</th>
+                                            <th>Harga Buka</th>
+                                            <th>Harga Tutup</th>
+                                            <th>Pips</th>
+                                            <th>P&L</th>
+                                            <th>Catatan</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tradesTableBody">
+                                        <!-- Trade rows will be inserted here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- History Page -->
+                <div id="historyPage" class="page" style="display: none;">
+                    <h2 class="mb-4">Riwayat Trade</h2>
+                    
+                    <!-- Filter Section -->
+                    <div class="filter-section">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="historyStartDate" class="form-label">Dari Tanggal</label>
+                                <input type="date" class="form-control" id="historyStartDate">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="historyEndDate" class="form-label">Sampai Tanggal</label>
+                                <input type="date" class="form-control" id="historyEndDate">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="historyPairFilter" class="form-label">Filter Pair</label>
+                                <select class="form-select" id="historyPairFilter">
+                                    <option value="">Semua Pair</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12 d-flex justify-content-between">
+                                <button class="btn btn-primary" id="applyHistoryFilter">Terapkan Filter</button>
+                                <div>
+                                    <button class="btn btn-success me-2" id="exportCsvBtn">
+                                        <i class="fas fa-file-csv me-2"></i> Export CSV
+                                    </button>
+                                    <button class="btn btn-success" id="exportExcelBtn">
+                                        <i class="fas fa-file-excel me-2"></i> Export Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- History Table -->
+                    <div class="card">
+                        <div class="card-header">
+                            Riwayat Trade Tertutup
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Tanggal & Jam</th>
+                                            <th>Pair</th>
+                                            <th>Posisi</th>
+                                            <th>Lot Size</th>
+                                            <th>Harga Buka</th>
+                                            <th>Harga Tutup</th>
+                                            <th>Pips</th>
+                                            <th>P&L</th>
+                                            <th>Catatan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="historyTableBody">
+                                        <!-- History rows will be inserted here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Report Page -->
+                <div id="reportPage" class="page" style="display: none;">
+                    <h2 class="mb-4">Laporan (E-Statement)</h2>
+                    
+                    <!-- Report Settings -->
+                    <div class="filter-section">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="reportStartDate" class="form-label">Dari Tanggal</label>
+                                <input type="date" class="form-control" id="reportStartDate">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="reportEndDate" class="form-label">Sampai Tanggal</label>
+                                <input type="date" class="form-control" id="reportEndDate">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="reportName" class="form-label">Nama Laporan</label>
+                                <input type="text" class="form-control" id="reportName" placeholder="Laporan Trading">
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                <label for="reportNotes" class="form-label">Catatan</label>
+                                <textarea class="form-control" id="reportNotes" rows="3" placeholder="Tambahkan catatan untuk laporan..."></textarea>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12 d-flex justify-content-between">
+                                <button class="btn btn-primary" id="generateReportBtn">Generate Laporan</button>
+                                <div>
+                                    <button class="btn btn-success me-2" id="downloadPdfBtn" disabled>
+                                        <i class="fas fa-file-pdf me-2"></i> Download PDF
+                                    </button>
+                                    <button class="btn btn-success" id="downloadDocxBtn" disabled>
+                                        <i class="fas fa-file-word me-2"></i> Download DOCX
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Report Preview -->
+                    <div class="card">
+                        <div class="card-header">
+                            Preview Laporan
+                        </div>
+                        <div class="card-body">
+                            <div id="reportPreview" class="report-preview" style="display: none;">
+                                <!-- Report preview will be inserted here -->
+                            </div>
+                            <div id="reportPlaceholder" class="text-center py-5">
+                                <i class="fas fa-file-alt fa-3x mb-3 text-muted"></i>
+                                <p class="text-muted">Generate laporan untuk melihat preview</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Settings Page -->
+                <div id="settingsPage" class="page" style="display: none;">
+                    <h2 class="mb-4">Pengaturan</h2>
+                    
+                    <!-- Pair Settings -->
+                    <div class="card">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <span>Pengaturan Pair</span>
+                            <button class="btn btn-primary" id="addPairBtn">
+                                <i class="fas fa-plus me-2"></i> Tambah Pair
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Pair</th>
+                                            <th>Jumlah Desimal</th>
+                                            <th>Nilai Pip</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="pairSettingsTableBody">
+                                        <!-- Pair settings rows will be inserted here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Import Section -->
+                    <div class="import-section">
+                        <h5>Impor Data dari CSV/Excel</h5>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="file-upload">
+                                    <input type="file" id="importFile" accept=".csv,.xlsx,.xls">
+                                    <label for="importFile" class="file-upload-label">
+                                        <i class="fas fa-upload me-2"></i> Pilih File
+                                    </label>
+                                </div>
+                                <div id="fileName" class="mt-2"></div>
+                                <div id="validationMessage" class="validation-message"></div>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="btn btn-primary w-100" id="importDataBtn" disabled>
+                                    <i class="fas fa-file-import me-2"></i> Impor Data
+                                </button>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <small class="text-muted">
+                                Format file yang didukung: CSV, Excel (.xlsx, .xls). Pastikan file memiliki kolom: Tanggal, Pair, Posisi, Lot Size, Harga Buka, Harga Tutup, Catatan.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Trade Modal -->
+    <div class="modal fade" id="newTradeModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Trade Baru</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="newTradeForm">
+                        <div class="mb-3">
+                            <label for="tradeDate" class="form-label">Tanggal & Jam</label>
+                            <input type="datetime-local" class="form-control" id="tradeDate" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tradePair" class="form-label">Pair</label>
+                            <select class="form-select" id="tradePair" required>
+                                <option value="">Pilih Pair</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tradePosition" class="form-label">Posisi</label>
+                            <select class="form-select" id="tradePosition" required>
+                                <option value="">Pilih Posisi</option>
+                                <option value="buy">Buy</option>
+                                <option value="sell">Sell</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tradeLotSize" class="form-label">Lot Size</label>
+                            <input type="number" class="form-control" id="tradeLotSize" step="0.01" min="0.01" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tradeOpenPrice" class="form-label">Harga Buka</label>
+                            <input type="number" class="form-control" id="tradeOpenPrice" step="0.00001" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tradeClosePrice" class="form-label">Harga Tutup</label>
+                            <input type="number" class="form-control" id="tradeClosePrice" step="0.00001">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tradeNotes" class="form-label">Catatan</label>
+                            <textarea class="form-control" id="tradeNotes" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" id="saveNewTradeBtn">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Trade Modal -->
+    <div class="modal fade" id="editTradeModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Trade</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editTradeForm">
+                        <input type="hidden" id="editTradeId">
+                        <div class="mb-3">
+                            <label for="editTradeDate" class="form-label">Tanggal & Jam</label>
+                            <input type="datetime-local" class="form-control" id="editTradeDate" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editTradePair" class="form-label">Pair</label>
+                            <select class="form-select" id="editTradePair" required>
+                                <option value="">Pilih Pair</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editTradePosition" class="form-label">Posisi</label>
+                            <select class="form-select" id="editTradePosition" required>
+                                <option value="">Pilih Posisi</option>
+                                <option value="buy">Buy</option>
+                                <option value="sell">Sell</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editTradeLotSize" class="form-label">Lot Size</label>
+                            <input type="number" class="form-control" id="editTradeLotSize" step="0.01" min="0.01" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editTradeOpenPrice" class="form-label">Harga Buka</label>
+                            <input type="number" class="form-control" id="editTradeOpenPrice" step="0.00001" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editTradeClosePrice" class="form-label">Harga Tutup</label>
+                            <input type="number" class="form-control" id="editTradeClosePrice" step="0.00001">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editTradePL" class="form-label">P&L</label>
+                            <input type="number" class="form-control" id="editTradePL" step="0.01">
+                        </div>
+                        <div class="mb-3">
+                            <label for="editTradeNotes" class="form-label">Catatan</label>
+                            <textarea class="form-control" id="editTradeNotes" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" id="saveEditTradeBtn">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Pair Modal -->
+    <div class="modal fade" id="addPairModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Pair</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addPairForm">
+                        <div class="mb-3">
+                            <label for="newPairName" class="form-label">Nama Pair</label>
+                            <input type="text" class="form-control" id="newPairName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newPairDecimals" class="form-label">Jumlah Desimal</label>
+                            <select class="form-select" id="newPairDecimals" required>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="newPairPipValue" class="form-label">Nilai Pip</label>
+                            <input type="number" class="form-control" id="newPairPipValue" step="0.00001" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" id="saveNewPairBtn">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SheetJS for Excel import/export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <!-- jsPDF for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- docx.js for DOCX generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.3.0/docx.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    
+    <script>
+        // Global variables
+        let trades = [];
+        let pairSettings = [
+            { pair: 'EURUSD', decimals: 5, pipValue: 0.0001 },
+            { pair: 'GBPUSD', decimals: 5, pipValue: 0.0001 },
+            { pair: 'USDJPY', decimals: 3, pipValue: 0.01 },
+            { pair: 'XAUUSD', decimals: 2, pipValue: 0.01 },
+            { pair: 'BTCUSD', decimals: 2, pipValue: 1 }
+        ];
+        let currentFilter = {
+            startDate: '',
+            endDate: ''
+        };
+        let reportData = null;
+        
+        // DOM elements
+        const themeToggle = document.getElementById('themeToggle');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const sidebar = document.getElementById('sidebar');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page');
+        const newTradeBtn = document.getElementById('newTradeBtn');
+        const newTradeModal = new bootstrap.Modal(document.getElementById('newTradeModal'));
+        const editTradeModal = new bootstrap.Modal(document.getElementById('editTradeModal'));
+        const addPairModal = new bootstrap.Modal(document.getElementById('addPairModal'));
+        const addPairBtn = document.getElementById('addPairBtn');
+        const pairSearch = document.getElementById('pairSearch');
+        const applyFilterBtn = document.getElementById('applyFilter');
+        const startDate = document.getElementById('startDate');
+        const endDate = document.getElementById('endDate');
+        const saveNewTradeBtn = document.getElementById('saveNewTradeBtn');
+        const saveEditTradeBtn = document.getElementById('saveEditTradeBtn');
+        const saveNewPairBtn = document.getElementById('saveNewPairBtn');
+        const exportCsvBtn = document.getElementById('exportCsvBtn');
+        const exportExcelBtn = document.getElementById('exportExcelBtn');
+        const generateReportBtn = document.getElementById('generateReportBtn');
+        const downloadPdfBtn = document.getElementById('downloadPdfBtn');
+        const downloadDocxBtn = document.getElementById('downloadDocxBtn');
+        const importFile = document.getElementById('importFile');
+        const importDataBtn = document.getElementById('importDataBtn');
+        
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved theme
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+            
+            // Load saved data
+            loadTradesFromStorage();
+            loadPairSettingsFromStorage();
+            
+            // Update UI
+            updateDashboardStats();
+            renderTradesTable();
+            updatePairOptions();
+            renderPairSettingsTable();
+            
+            // Set default dates
+            const today = new Date();
+            const lastMonth = new Date();
+            lastMonth.setMonth(lastMonth.getMonth() - 1);
+            
+            startDate.valueAsDate = lastMonth;
+            endDate.valueAsDate = today;
+            document.getElementById('historyStartDate').valueAsDate = lastMonth;
+            document.getElementById('historyEndDate').valueAsDate = today;
+            document.getElementById('reportStartDate').valueAsDate = lastMonth;
+            document.getElementById('reportEndDate').valueAsDate = today;
+            
+            currentFilter.startDate = formatDateForStorage(lastMonth);
+            currentFilter.endDate = formatDateForStorage(today);
+        });
+        
+        // Theme toggle
+        themeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+                localStorage.setItem('theme', 'light');
+            }
+        });
+        
+        // Mobile menu toggle
+        mobileMenuBtn.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+        });
+        
+        // Navigation
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Update active nav link
+                navLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show corresponding page
+                const pageId = this.getAttribute('data-page') + 'Page';
+                pages.forEach(page => {
+                    page.style.display = 'none';
+                });
+                document.getElementById(pageId).style.display = 'block';
+                
+                // Close mobile menu
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('active');
+                }
+                
+                // Update page-specific content
+                if (this.getAttribute('data-page') === 'history') {
+                    renderHistoryTable();
+                    updateHistoryPairFilter();
+                } else if (this.getAttribute('data-page') === 'settings') {
+                    renderPairSettingsTable();
+                }
+            });
+        });
+        
+        // New trade button
+        newTradeBtn.addEventListener('click', function() {
+            // Set current date and time as default
+            const now = new Date();
+            document.getElementById('tradeDate').value = formatDateTimeLocal(now);
+            
+            // Reset form
+            document.getElementById('newTradeForm').reset();
+            
+            // Show modal
+            newTradeModal.show();
+        });
+        
+        // Add pair button
+        addPairBtn.addEventListener('click', function() {
+            // Reset form
+            document.getElementById('addPairForm').reset();
+            
+            // Show modal
+            addPairModal.show();
+        });
+        
+        // Save new trade
+        saveNewTradeBtn.addEventListener('click', function() {
+            // Get form values
+            const date = document.getElementById('tradeDate').value;
+            const pair = document.getElementById('tradePair').value;
+            const position = document.getElementById('tradePosition').value;
+            const lotSize = parseFloat(document.getElementById('tradeLotSize').value);
+            const openPrice = parseFloat(document.getElementById('tradeOpenPrice').value);
+            const closePrice = parseFloat(document.getElementById('tradeClosePrice').value) || null;
+            const notes = document.getElementById('tradeNotes').value;
+            
+            // Validate form
+            if (!date || !pair || !position || isNaN(lotSize) || isNaN(openPrice)) {
+                alert('Harap lengkapi semua field yang diperlukan');
+                return;
+            }
+            
+            // Find pair settings
+            const pairSetting = pairSettings.find(p => p.pair === pair);
+            if (!pairSetting) {
+                alert('Pair tidak ditemukan');
+                return;
+            }
+            
+            // Calculate pips if close price is provided
+            let pips = null;
+            let pl = null;
+            
+            if (closePrice) {
+                const priceDiff = position === 'buy' ? closePrice - openPrice : openPrice - closePrice;
+                pips = priceDiff / pairSetting.pipValue;
+            }
+            
+            // Create new trade object
+            const newTrade = {
+                id: Date.now(),
+                date: date,
+                pair: pair,
+                position: position,
+                lotSize: lotSize,
+                openPrice: openPrice,
+                closePrice: closePrice,
+                pips: pips,
+                pl: pl,
+                notes: notes
+            };
+            
+            // Add to trades array
+            trades.push(newTrade);
+            
+            // Save to storage
+            saveTradesToStorage();
+            
+            // Update UI
+            updateDashboardStats();
+            renderTradesTable();
+            
+            // Close modal
+            newTradeModal.hide();
+        });
+        
+        // Save edited trade
+        saveEditTradeBtn.addEventListener('click', function() {
+            // Get form values
+            const id = parseInt(document.getElementById('editTradeId').value);
+            const date = document.getElementById('editTradeDate').value;
+            const pair = document.getElementById('editTradePair').value;
+            const position = document.getElementById('editTradePosition').value;
+            const lotSize = parseFloat(document.getElementById('editTradeLotSize').value);
+            const openPrice = parseFloat(document.getElementById('editTradeOpenPrice').value);
+            const closePrice = parseFloat(document.getElementById('editTradeClosePrice').value) || null;
+            const pl = parseFloat(document.getElementById('editTradePL').value) || null;
+            const notes = document.getElementById('editTradeNotes').value;
+            
+            // Validate form
+            if (!date || !pair || !position || isNaN(lotSize) || isNaN(openPrice)) {
+                alert('Harap lengkapi semua field yang diperlukan');
+                return;
+            }
+            
+            // Find trade index
+            const tradeIndex = trades.findIndex(t => t.id === id);
+            if (tradeIndex === -1) {
+                alert('Trade tidak ditemukan');
+                return;
+            }
+            
+            // Find pair settings
+            const pairSetting = pairSettings.find(p => p.pair === pair);
+            if (!pairSetting) {
+                alert('Pair tidak ditemukan');
+                return;
+            }
+            
+            // Calculate pips if close price is provided
+            let pips = null;
+            
+            if (closePrice) {
+                const priceDiff = position === 'buy' ? closePrice - openPrice : openPrice - closePrice;
+                pips = priceDiff / pairSetting.pipValue;
+            }
+            
+            // Update trade
+            trades[tradeIndex] = {
+                ...trades[tradeIndex],
+                date: date,
+                pair: pair,
+                position: position,
+                lotSize: lotSize,
+                openPrice: openPrice,
+                closePrice: closePrice,
+                pips: pips,
+                pl: pl,
+                notes: notes
+            };
+            
+            // Save to storage
+            saveTradesToStorage();
+            
+            // Update UI
+            updateDashboardStats();
+            renderTradesTable();
+            
+            // Close modal
+            editTradeModal.hide();
+        });
+        
+        // Save new pair
+        saveNewPairBtn.addEventListener('click', function() {
+            // Get form values
+            const pair = document.getElementById('newPairName').value.trim().toUpperCase();
+            const decimals = parseInt(document.getElementById('newPairDecimals').value);
+            const pipValue = parseFloat(document.getElementById('newPairPipValue').value);
+            
+            // Validate form
+            if (!pair || isNaN(decimals) || isNaN(pipValue)) {
+                alert('Harap lengkapi semua field');
+                return;
+            }
+            
+            // Check if pair already exists
+            if (pairSettings.some(p => p.pair === pair)) {
+                alert('Pair sudah ada');
+                return;
+            }
+            
+            // Add to pair settings
+            pairSettings.push({
+                pair: pair,
+                decimals: decimals,
+                pipValue: pipValue
+            });
+            
+            // Save to storage
+            savePairSettingsToStorage();
+            
+            // Update UI
+            updatePairOptions();
+            renderPairSettingsTable();
+            
+            // Close modal
+            addPairModal.show();
+        });
+        
+        // Pair search
+        pairSearch.addEventListener('input', function() {
+            renderTradesTable();
+        });
+        
+        // Apply filter
+        applyFilterBtn.addEventListener('click', function() {
+            currentFilter.startDate = startDate.value ? formatDateForStorage(new Date(startDate.value)) : '';
+            currentFilter.endDate = endDate.value ? formatDateForStorage(new Date(endDate.value)) : '';
+            
+            updateDashboardStats();
+            renderTradesTable();
+        });
+        
+        // Export to CSV
+        exportCsvBtn.addEventListener('click', function() {
+            const filteredTrades = getFilteredTrades(
+                document.getElementById('historyStartDate').value,
+                document.getElementById('historyEndDate').value,
+                document.getElementById('historyPairFilter').value
+            );
+            
+            if (filteredTrades.length === 0) {
+                alert('Tidak ada data untuk diekspor');
+                return;
+            }
+            
+            // Create CSV content
+            let csvContent = "Tanggal & Jam,Pair,Posisi,Lot Size,Harga Buka,Harga Tutup,Pips,P&L,Catatan\n";
+            
+            filteredTrades.forEach(trade => {
+                const date = new Date(trade.date);
+                const formattedDate = formatDateTime(date);
+                const pips = trade.pips !== null ? trade.pips.toFixed(1) : '';
+                const pl = trade.pl !== null ? trade.pl.toFixed(2) : '';
+                
+                csvContent += `${formattedDate},${trade.pair},${trade.position},${trade.lotSize.toFixed(2)},${trade.openPrice},${trade.closePrice || ''},${pips},${pl},"${trade.notes}"\n`;
+            });
+            
+            // Create download link
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.setAttribute('href', url);
+            link.setAttribute('download', `trading_journal_${formatDateForFilename(new Date())}.csv`);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+        
+        // Export to Excel
+        exportExcelBtn.addEventListener('click', function() {
+            const filteredTrades = getFilteredTrades(
+                document.getElementById('historyStartDate').value,
+                document.getElementById('historyEndDate').value,
+                document.getElementById('historyPairFilter').value
+            );
+            
+            if (filteredTrades.length === 0) {
+                alert('Tidak ada data untuk diekspor');
+                return;
+            }
+            
+            // Create workbook
+            const wb = XLSX.utils.book_new();
+            
+            // Create worksheet data
+            const wsData = [
+                ["Tanggal & Jam", "Pair", "Posisi", "Lot Size", "Harga Buka", "Harga Tutup", "Pips", "P&L", "Catatan"]
+            ];
+            
+            filteredTrades.forEach(trade => {
+                const date = new Date(trade.date);
+                const formattedDate = formatDateTime(date);
+                const pips = trade.pips !== null ? trade.pips.toFixed(1) : '';
+                const pl = trade.pl !== null ? trade.pl.toFixed(2) : '';
+                
+                wsData.push([
+                    formattedDate,
+                    trade.pair,
+                    trade.position,
+                    trade.lotSize.toFixed(2),
+                    trade.openPrice,
+                    trade.closePrice || '',
+                    pips,
+                    pl,
+                    trade.notes
+                ]);
+            });
+            
+            // Create worksheet
+            const ws = XLSX.utils.aoa_to_sheet(wsData);
+            
+            // Add worksheet to workbook
+            XLSX.utils.book_append_sheet(wb, ws, "Trading Journal");
+            
+            // Save workbook
+            XLSX.writeFile(wb, `trading_journal_${formatDateForFilename(new Date())}.xlsx`);
+        });
+        
+        // Generate report
+        generateReportBtn.addEventListener('click', function() {
+            const reportStartDate = document.getElementById('reportStartDate').value;
+            const reportEndDate = document.getElementById('reportEndDate').value;
+            const reportName = document.getElementById('reportName').value || 'Laporan Trading';
+            const reportNotes = document.getElementById('reportNotes').value;
+            
+            if (!reportStartDate || !reportEndDate) {
+                alert('Harap pilih rentang tanggal');
+                return;
+            }
+            
+            // Get filtered trades
+            const filteredTrades = getFilteredTrades(reportStartDate, reportEndDate);
+            
+            if (filteredTrades.length === 0) {
+                alert('Tidak ada data untuk rentang tanggal yang dipilih');
+                return;
+            }
+            
+            // Calculate statistics
+            const totalTrades = filteredTrades.length;
+            const closedTrades = filteredTrades.filter(t => t.closePrice !== null);
+            const winningTrades = closedTrades.filter(t => t.pips > 0).length;
+            const winrate = closedTrades.length > 0 ? (winningTrades / closedTrades.length) * 100 : 0;
+            const totalPips = closedTrades.reduce((sum, trade) => sum + (trade.pips || 0), 0);
+            const totalPL = closedTrades.reduce((sum, trade) => sum + (trade.pl || 0), 0);
+            
+            // Store report data
+            reportData = {
+                name: reportName,
+                startDate: reportStartDate,
+                endDate: reportEndDate,
+                notes: reportNotes,
+                totalTrades: totalTrades,
+                winrate: winrate,
+                totalPips: totalPips,
+                totalPL: totalPL,
+                trades: filteredTrades
+            };
+            
+            // Render report preview
+            renderReportPreview();
+            
+            // Enable download buttons
+            downloadPdfBtn.disabled = false;
+            downloadDocxBtn.disabled = false;
+        });
+        
+        // Download PDF
+        downloadPdfBtn.addEventListener('click', function() {
+            if (!reportData) {
+                alert('Generate laporan terlebih dahulu');
+                return;
+            }
+            
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Add font
+            doc.addFont('https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Regular.ttf', 'Roboto', 'normal');
+            
+            // Set font
+            doc.setFont('times', 'normal');
+            
+            // Title
+            doc.setFontSize(20);
+            doc.text('TREDING JURNAL TAUFIQ', 105, 20, { align: 'center' });
+            
+            // Report name
+            doc.setFontSize(16);
+            doc.text(reportData.name, 105, 30, { align: 'center' });
+            
+            // Date range
+            doc.setFontSize(12);
+            const startDate = new Date(reportData.startDate);
+            const endDate = new Date(reportData.endDate);
+            doc.text(`${formatDate(startDate)} - ${formatDate(endDate)}`, 105, 40, { align: 'center' });
+            
+            // Summary
+            doc.setFontSize(14);
+            doc.text('Ringkasan Performa', 20, 60);
+            
+            doc.setFontSize(12);
+            doc.text(`Total Trade: ${reportData.totalTrades}`, 20, 70);
+            doc.text(`Winrate: ${reportData.winrate.toFixed(2)}%`, 20, 80);
+            doc.text(`Total Pips: ${reportData.totalPips.toFixed(1)}`, 20, 90);
+            doc.text(`Total P&L: ${reportData.totalPL.toFixed(2)}`, 20, 100);
+            
+            // Table header
+            doc.setFontSize(12);
+            doc.text('Tanggal', 20, 120);
+            doc.text('Pair', 50, 120);
+            doc.text('Posisi', 80, 120);
+            doc.text('Harga Buka', 110, 120);
+            doc.text('Harga Tutup', 140, 120);
+            doc.text('Pips', 170, 120);
+            doc.text('P&L', 190, 120);
+            
+            // Table rows
+            let yPosition = 130;
+            reportData.trades.forEach(trade => {
+                if (yPosition > 270) {
+                    doc.addPage();
+                    yPosition = 20;
+                }
+                
+                const date = new Date(trade.date);
+                const formattedDate = formatDate(date);
+                const pips = trade.pips !== null ? trade.pips.toFixed(1) : '';
+                const pl = trade.pl !== null ? trade.pl.toFixed(2) : '';
+                
+                doc.setFontSize(10);
+                doc.text(formattedDate, 20, yPosition);
+                doc.text(trade.pair, 50, yPosition);
+                doc.text(trade.position, 80, yPosition);
+                doc.text(trade.openPrice.toString(), 110, yPosition);
+                doc.text(trade.closePrice ? trade.closePrice.toString() : '', 140, yPosition);
+                doc.text(pips, 170, yPosition);
+                doc.text(pl, 190, yPosition);
+                
+                yPosition += 10;
+            });
+            
+            // Notes
+            if (reportData.notes) {
+                if (yPosition > 250) {
+                    doc.addPage();
+                    yPosition = 20;
+                }
+                
+                doc.setFontSize(12);
+                doc.text('Catatan:', 20, yPosition + 10);
+                doc.setFontSize(10);
+                const splitNotes = doc.splitTextToSize(reportData.notes, 170);
+                doc.text(splitNotes, 20, yPosition + 20);
+            }
+            
+            // Footer
+            const pageCount = doc.internal.getNumberOfPages();
+            for (let i = 1; i <= pageCount; i++) {
+                doc.setPage(i);
+                doc.setFontSize(8);
+                doc.text('Laporan dihasilkan oleh aplikasi jurnal, bukan dari broker', 105, 285, { align: 'center' });
+            }
+            
+            // Save PDF
+            doc.save(`${reportData.name.replace(/\s+/g, '_')}_${formatDateForFilename(new Date())}.pdf`);
+        });
+        
+        // Download DOCX
+        downloadDocxBtn.addEventListener('click', function() {
+            if (!reportData) {
+                alert('Generate laporan terlebih dahulu');
+                return;
+            }
+            
+            // Create document
+            const doc = new docx.Document({
+                sections: [{
+                    properties: {},
+                    children: [
+                        new docx.Paragraph({
+                            text: 'TREDING JURNAL TAUFIQ',
+                            heading: docx.HeadingLevel.HEADING_1,
+                            alignment: docx.AlignmentType.CENTER,
+                            style: 'TimesNewRoman'
+                        }),
+                        new docx.Paragraph({
+                            text: reportData.name,
+                            heading: docx.HeadingLevel.HEADING_2,
+                            alignment: docx.AlignmentType.CENTER,
+                            style: 'TimesNewRoman'
+                        }),
+                        new docx.Paragraph({
+                            text: `${formatDate(new Date(reportData.startDate))} - ${formatDate(new Date(reportData.endDate))}`,
+                            alignment: docx.AlignmentType.CENTER,
+                            style: 'TimesNewRoman'
+                        }),
+                        new docx.Paragraph({
+                            text: '',
+                            style: 'TimesNewRoman'
+                        }),
+                        new docx.Paragraph({
+                            text: 'Ringkasan Performa',
+                            heading: docx.HeadingLevel.HEADING_3,
+                            style: 'TimesNewRoman'
+                        }),
+                        new docx.Paragraph({
+                            text: `Total Trade: ${reportData.totalTrades}`,
+                            style: 'TimesNewRoman'
+                        }),
+                        new docx.Paragraph({
+                            text: `Winrate: ${reportData.winrate.toFixed(2)}%`,
+                            style: 'TimesNewRoman'
+                        }),
+                        new docx.Paragraph({
+                            text: `Total Pips: ${reportData.totalPips.toFixed(1)}`,
+                            style: 'TimesNewRoman'
+                        }),
+                        new docx.Paragraph({
+                            text: `Total P&L: ${reportData.totalPL.toFixed(2)}`,
+                            style: 'TimesNewRoman'
+                        }),
+                        new docx.Paragraph({
+                            text: '',
+                            style: 'TimesNewRoman'
+                        }),
+                        new docx.Paragraph({
+                            text: 'Detail Trade',
+                            heading: docx.HeadingLevel.HEADING_3,
+                            style: 'TimesNewRoman'
+                        }),
+                        new docx.Table({
+                            width: {
+                                size: 100,
+                                type: docx.WidthType.PERCENTAGE
+                            },
+                            rows: [
+                                new docx.TableRow({
+                                    children: [
+                                        new docx.TableCell({ text: 'Tanggal' }),
+                                        new docx.TableCell({ text: 'Pair' }),
+                                        new docx.TableCell({ text: 'Posisi' }),
+                                        new docx.TableCell({ text: 'Harga Buka' }),
+                                        new docx.TableCell({ text: 'Harga Tutup' }),
+                                        new docx.TableCell({ text: 'Pips' }),
+                                        new docx.TableCell({ text: 'P&L' })
+                                    ]
+                                }),
+                                ...reportData.trades.map(trade => new docx.TableRow({
+                                    children: [
+                                        new docx.TableCell({ text: formatDate(new Date(trade.date)) }),
+                                        new docx.TableCell({ text: trade.pair }),
+                                        new docx.TableCell({ text: trade.position }),
+                                        new docx.TableCell({ text: trade.openPrice.toString() }),
+                                        new docx.TableCell({ text: trade.closePrice ? trade.closePrice.toString() : '' }),
+                                        new docx.TableCell({ text: trade.pips !== null ? trade.pips.toFixed(1) : '' }),
+                                        new docx.TableCell({ text: trade.pl !== null ? trade.pl.toFixed(2) : '' })
+                                    ]
+                                }))
+                            ]
+                        }),
+                        ...(reportData.notes ? [
+                            new docx.Paragraph({
+                                text: '',
+                                style: 'TimesNewRoman'
+                            }),
+                            new docx.Paragraph({
+                                text: 'Catatan',
+                                heading: docx.HeadingLevel.HEADING_3,
+                                style: 'TimesNewRoman'
+                            }),
+                            new docx.Paragraph({
+                                text: reportData.notes,
+                                style: 'TimesNewRoman'
+                            })
+                        ] : []),
+                        new docx.Paragraph({
+                            text: '',
+                            style: 'TimesNewRoman'
+                        }),
+                        new docx.Paragraph({
+                            text: 'Laporan dihasilkan oleh aplikasi jurnal, bukan dari broker',
+                            alignment: docx.AlignmentType.CENTER,
+                            style: 'TimesNewRoman'
+                        })
+                    ]
+                }]
+            });
+            
+            // Save DOCX
+            docx.Packer.toBlob(doc).then(blob => {
+                saveAs(blob, `${reportData.name.replace(/\s+/g, '_')}_${formatDateForFilename(new Date())}.docx`);
+            });
+        });
+        
+        // Import file change
+        importFile.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            
+            document.getElementById('fileName').textContent = file.name;
+            importDataBtn.disabled = false;
+            
+            // Reset validation message
+            const validationMessage = document.getElementById('validationMessage');
+            validationMessage.style.display = 'none';
+            validationMessage.className = 'validation-message';
+        });
+        
+        // Import data
+        importDataBtn.addEventListener('click', function() {
+            const file = importFile.files[0];
+            if (!file) return;
+            
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                try {
+                    let data;
+                    
+                    if (file.name.endsWith('.csv')) {
+                        // Parse CSV
+                        const text = e.target.result;
+                        const lines = text.split('\n');
+                        const headers = lines[0].split(',');
+                        
+                        data = [];
+                        for (let i = 1; i < lines.length; i++) {
+                            if (lines[i].trim() === '') continue;
+                            
+                            const values = lines[i].split(',');
+                            const row = {};
+                            
+                            headers.forEach((header, index) => {
+                                row[header.trim()] = values[index] ? values[index].trim() : '';
+                            });
+                            
+                            data.push(row);
+                        }
+                    } else {
+                        // Parse Excel
+                        const workbook = XLSX.read(e.target.result, { type: 'binary' });
+                        const firstSheetName = workbook.SheetNames[0];
+                        const worksheet = workbook.Sheets[firstSheetName];
+                        data = XLSX.utils.sheet_to_json(worksheet);
+                    }
+                    
+                    // Validate data
+                    const validationMessage = document.getElementById('validationMessage');
+                    let isValid = true;
+                    let message = '';
+                    
+                    // Check required columns
+                    const requiredColumns = ['Tanggal & Jam', 'Pair', 'Posisi', 'Lot Size', 'Harga Buka'];
+                    const missingColumns = requiredColumns.filter(col => !data[0] || !data[0].hasOwnProperty(col));
+                    
+                    if (missingColumns.length > 0) {
+                        isValid = false;
+                        message = `Kolom yang diperlukan tidak ditemukan: ${missingColumns.join(', ')}`;
+                    } else {
+                        // Validate rows
+                        let validRows = 0;
+                        let invalidRows = 0;
+                        
+                        data.forEach((row, index) => {
+                            // Check if row has required data
+                            if (!row['Tanggal & Jam'] || !row.Pair || !row.Posisi || !row['Lot Size'] || !row['Harga Buka']) {
+                                invalidRows++;
+                                return;
+                            }
+                            
+                            // Check if pair exists in settings
+                            const pair = row.Pair.toUpperCase();
+                            const pairSetting = pairSettings.find(p => p.pair === pair);
+                            
+                            if (!pairSetting) {
+                                invalidRows++;
+                                return;
+                            }
+                            
+                            // Parse date
+                            const date = parseDate(row['Tanggal & Jam']);
+                            if (!date) {
+                                invalidRows++;
+                                return;
+                            }
+                            
+                            // Parse numeric values
+                            const lotSize = parseFloat(row['Lot Size']);
+                            const openPrice = parseFloat(row['Harga Buka']);
+                            const closePrice = row['Harga Tutup'] ? parseFloat(row['Harga Tutup']) : null;
+                            
+                            if (isNaN(lotSize) || isNaN(openPrice) || (closePrice !== null && isNaN(closePrice))) {
+                                invalidRows++;
+                                return;
+                            }
+                            
+                            validRows++;
+                        });
+                        
+                        if (validRows === 0) {
+                            isValid = false;
+                            message = 'Tidak ada data valid untuk diimpor';
+                        } else {
+                            message = `Validasi berhasil: ${validRows} baris valid, ${invalidRows} baris tidak valid`;
+                            
+                            // Import valid rows
+                            data.forEach((row, index) => {
+                                // Skip invalid rows
+                                if (!row['Tanggal & Jam'] || !row.Pair || !row.Posisi || !row['Lot Size'] || !row['Harga Buka']) {
+                                    return;
+                                }
+                                
+                                const pair = row.Pair.toUpperCase();
+                                const pairSetting = pairSettings.find(p => p.pair === pair);
+                                
+                                if (!pairSetting) {
+                                    return;
+                                }
+                                
+                                const date = parseDate(row['Tanggal & Jam']);
+                                if (!date) {
+                                    return;
+                                }
+                                
+                                const lotSize = parseFloat(row['Lot Size']);
+                                const openPrice = parseFloat(row['Harga Buka']);
+                                const closePrice = row['Harga Tutup'] ? parseFloat(row['Harga Tutup']) : null;
+                                
+                                if (isNaN(lotSize) || isNaN(openPrice) || (closePrice !== null && isNaN(closePrice))) {
+                                    return;
+                                }
+                                
+                                // Calculate pips if close price is provided
+                                let pips = null;
+                                
+                                if (closePrice) {
+                                    const position = row.Posisi.toLowerCase();
+                                    const priceDiff = position === 'buy' ? closePrice - openPrice : openPrice - closePrice;
+                                    pips = priceDiff / pairSetting.pipValue;
+                                }
+                                
+                                // Create trade object
+                                const trade = {
+                                    id: Date.now() + index,
+                                    date: formatDateTimeLocal(date),
+                                    pair: pair,
+                                    position: row.Posisi.toLowerCase(),
+                                    lotSize: lotSize,
+                                    openPrice: openPrice,
+                                    closePrice: closePrice,
+                                    pips: pips,
+                                    pl: null, // P&L will be entered manually
+                                    notes: row.Catatan || ''
+                                };
+                                
+                                // Add to trades array
+                                trades.push(trade);
+                            });
+                            
+                            // Save to storage
+                            saveTradesToStorage();
+                            
+                            // Update UI
+                            updateDashboardStats();
+                            renderTradesTable();
+                            
+                            // Reset file input
+                            importFile.value = '';
+                            document.getElementById('fileName').textContent = '';
+                            importDataBtn.disabled = true;
+                        }
+                    }
+                    
+                    // Show validation message
+                    validationMessage.textContent = message;
+                    validationMessage.style.display = 'block';
+                    
+                    if (isValid) {
+                        validationMessage.classList.add('validation-success');
+                    } else {
+                        validationMessage.classList.add('validation-error');
+                    }
+                } catch (error) {
+                    console.error('Error importing file:', error);
+                    
+                    const validationMessage = document.getElementById('validationMessage');
+                    validationMessage.textContent = 'Error saat mengimpor file: ' + error.message;
+                    validationMessage.className = 'validation-message validation-error';
+                    validationMessage.style.display = 'block';
+                }
+            };
+            
+            if (file.name.endsWith('.csv')) {
+                reader.readAsText(file);
+            } else {
+                reader.readAsBinaryString(file);
+            }
+        });
+        
+        // Apply history filter
+        document.getElementById('applyHistoryFilter').addEventListener('click', function() {
+            renderHistoryTable();
+        });
+        
+        // Helper functions
+        function formatDateTimeLocal(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            
+            return `${year}-${month}-${day}T${hours}:${minutes}`;
+        }
+        
+        function formatDateTime(date) {
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            
+            return `${day}/${month}/${year} ${hours}:${minutes}`;
+        }
+        
+        function formatDate(date) {
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            
+            return `${day}/${month}/${year}`;
+        }
+        
+        function formatDateForFilename(date) {
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            
+            return `${year}${month}${day}`;
+        }
+        
+        function formatDateForStorage(date) {
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            
+            return `${year}-${month}-${day}`;
+        }
+        
+        function parseDate(dateString) {
+            // Try different date formats
+            const formats = [
+                // dd/mm/yyyy hh:mm
+                /^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})$/,
+                // mm/dd/yyyy hh:mm
+                /^(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2})$/,
+                // yyyy-mm-dd hh:mm
+                /^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2})$/
+            ];
+            
+            for (const format of formats) {
+                const match = dateString.match(format);
+                if (match) {
+                    let day, month, year, hours, minutes;
+                    
+                    if (format === formats[0]) {
+                        // dd/mm/yyyy hh:mm
+                        day = parseInt(match[1]);
+                        month = parseInt(match[2]) - 1;
+                        year = parseInt(match[3]);
+                        hours = parseInt(match[4]);
+                        minutes = parseInt(match[5]);
+                    } else if (format === formats[1]) {
+                        // mm/dd/yyyy hh:mm
+                        month = parseInt(match[1]) - 1;
+                        day = parseInt(match[2]);
+                        year = parseInt(match[3]);
+                        hours = parseInt(match[4]);
+                        minutes = parseInt(match[5]);
+                    } else {
+                        // yyyy-mm-dd hh:mm
+                        year = parseInt(match[1]);
+                        month = parseInt(match[2]) - 1;
+                        day = parseInt(match[3]);
+                        hours = parseInt(match[4]);
+                        minutes = parseInt(match[5]);
+                    }
+                    
+                    return new Date(year, month, day, hours, minutes);
+                }
+            }
+            
+            return null;
+        }
+        
+        function updateDashboardStats() {
+            // Get filtered trades
+            const filteredTrades = getFilteredTrades(currentFilter.startDate, currentFilter.endDate);
+            
+            // Calculate stats
+            const totalTrades = filteredTrades.length;
+            const closedTrades = filteredTrades.filter(t => t.closePrice !== null);
+            const winningTrades = closedTrades.filter(t => t.pips > 0).length;
+            const winrate = closedTrades.length > 0 ? (winningTrades / closedTrades.length) * 100 : 0;
+            const totalPips = closedTrades.reduce((sum, trade) => sum + (trade.pips || 0), 0);
+            const totalPL = closedTrades.reduce((sum, trade) => sum + (trade.pl || 0), 0);
+            
+            // Update UI
+            document.getElementById('totalTrades').textContent = totalTrades;
+            document.getElementById('winrate').textContent = winrate.toFixed(2) + '%';
+            
+            const totalPipsElement = document.getElementById('totalPips');
+            totalPipsElement.textContent = totalPips.toFixed(1);
+            totalPipsElement.className = totalPips >= 0 ? 'stat-value profit' : 'stat-value loss';
+            
+            const totalPLElement = document.getElementById('totalPL');
+            totalPLElement.textContent = totalPL.toFixed(2);
+            totalPLElement.className = totalPL >= 0 ? 'stat-value profit' : 'stat-value loss';
+        }
+        
+        function renderTradesTable() {
+            const tableBody = document.getElementById('tradesTableBody');
+            const searchTerm = pairSearch.value.toLowerCase();
+            
+            // Get filtered trades
+            let filteredTrades = getFilteredTrades(currentFilter.startDate, currentFilter.endDate);
+            
+            // Filter by search term
+            if (searchTerm) {
+                filteredTrades = filteredTrades.filter(trade => 
+                    trade.pair.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            // Clear table
+            tableBody.innerHTML = '';
+            
+            // Add rows
+            filteredTrades.forEach(trade => {
+                const row = document.createElement('tr');
+                
+                // Format date
+                const date = new Date(trade.date);
+                const formattedDate = formatDateTime(date);
+                
+                // Format pips
+                const pips = trade.pips !== null ? trade.pips.toFixed(1) : '-';
+                const pipsClass = trade.pips !== null ? (trade.pips >= 0 ? 'profit' : 'loss') : '';
+                
+                // Format P&L
+                const pl = trade.pl !== null ? trade.pl.toFixed(2) : '-';
+                const plClass = trade.pl !== null ? (trade.pl >= 0 ? 'profit' : 'loss') : '';
+                
+                // Get pair setting for decimal places
+                const pairSetting = pairSettings.find(p => p.pair === trade.pair);
+                const decimals = pairSetting ? pairSetting.decimals : 5;
+                
+                row.innerHTML = `
+                    <td>${formattedDate}</td>
+                    <td>${trade.pair}</td>
+                    <td>${trade.position.toUpperCase()}</td>
+                    <td>${trade.lotSize.toFixed(2)}</td>
+                    <td>${trade.openPrice.toFixed(decimals)}</td>
+                    <td>${trade.closePrice !== null ? trade.closePrice.toFixed(decimals) : '-'}</td>
+                    <td class="${pipsClass}">${pips}</td>
+                    <td class="${plClass}">${pl}</td>
+                    <td>${trade.notes}</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary edit-btn" data-id="${trade.id}">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-sm btn-danger delete-btn" data-id="${trade.id}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+            
+            // Add event listeners to edit and delete buttons
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    editTrade(id);
+                });
+            });
+            
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    deleteTrade(id);
+                });
+            });
+        }
+        
+        function renderHistoryTable() {
+            const tableBody = document.getElementById('historyTableBody');
+            
+            // Get filtered trades
+            const filteredTrades = getFilteredTrades(
+                document.getElementById('historyStartDate').value,
+                document.getElementById('historyEndDate').value,
+                document.getElementById('historyPairFilter').value,
+                true // Only closed trades
+            );
+            
+            // Clear table
+            tableBody.innerHTML = '';
+            
+            // Add rows
+            filteredTrades.forEach(trade => {
+                const row = document.createElement('tr');
+                
+                // Format date
+                const date = new Date(trade.date);
+                const formattedDate = formatDateTime(date);
+                
+                // Format pips
+                const pips = trade.pips !== null ? trade.pips.toFixed(1) : '-';
+                const pipsClass = trade.pips !== null ? (trade.pips >= 0 ? 'profit' : 'loss') : '';
+                
+                // Format P&L
+                const pl = trade.pl !== null ? trade.pl.toFixed(2) : '-';
+                const plClass = trade.pl !== null ? (trade.pl >= 0 ? 'profit' : 'loss') : '';
+                
+                // Get pair setting for decimal places
+                const pairSetting = pairSettings.find(p => p.pair === trade.pair);
+                const decimals = pairSetting ? pairSetting.decimals : 5;
+                
+                row.innerHTML = `
+                    <td>${formattedDate}</td>
+                    <td>${trade.pair}</td>
+                    <td>${trade.position.toUpperCase()}</td>
+                    <td>${trade.lotSize.toFixed(2)}</td>
+                    <td>${trade.openPrice.toFixed(decimals)}</td>
+                    <td>${trade.closePrice !== null ? trade.closePrice.toFixed(decimals) : '-'}</td>
+                    <td class="${pipsClass}">${pips}</td>
+                    <td class="${plClass}">${pl}</td>
+                    <td>${trade.notes}</td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+        }
+        
+        function renderReportPreview() {
+            const preview = document.getElementById('reportPreview');
+            const placeholder = document.getElementById('reportPlaceholder');
+            
+            if (!reportData) {
+                preview.style.display = 'none';
+                placeholder.style.display = 'block';
+                return;
+            }
+            
+            // Format dates
+            const startDate = new Date(reportData.startDate);
+            const endDate = new Date(reportData.endDate);
+            
+            // Create HTML
+            let html = `
+                <div class="report-header">
+                    <div class="report-title">TREDING JURNAL TAUFIQ</div>
+                    <div class="report-name">${reportData.name}</div>
+                    <div class="report-period">${formatDate(startDate)} - ${formatDate(endDate)}</div>
+                </div>
+                
+                <div class="report-summary">
+                    <div class="report-summary-item">
+                        <div>Total Trade</div>
+                        <div><strong>${reportData.totalTrades}</strong></div>
+                    </div>
+                    <div class="report-summary-item">
+                        <div>Winrate</div>
+                        <div><strong>${reportData.winrate.toFixed(2)}%</strong></div>
+                    </div>
+                    <div class="report-summary-item">
+                        <div>Total Pips</div>
+                        <div><strong class="${reportData.totalPips >= 0 ? 'profit' : 'loss'}">${reportData.totalPips.toFixed(1)}</strong></div>
+                    </div>
+                    <div class="report-summary-item">
+                        <div>Total P&L</div>
+                        <div><strong class="${reportData.totalPL >= 0 ? 'profit' : 'loss'}">${reportData.totalPL.toFixed(2)}</strong></div>
+                    </div>
+                </div>
+                
+                <table class="report-table">
+                    <thead>
+                        <tr>
+                            <th>Tanggal</th>
+                            <th>Pair</th>
+                            <th>Posisi</th>
+                            <th>Harga Buka</th>
+                            <th>Harga Tutup</th>
+                            <th>Pips</th>
+                            <th>P&L</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            // Add trade rows
+            reportData.trades.forEach(trade => {
+                const date = new Date(trade.date);
+                const formattedDate = formatDate(date);
+                const pips = trade.pips !== null ? trade.pips.toFixed(1) : '-';
+                const pl = trade.pl !== null ? trade.pl.toFixed(2) : '-';
+                
+                // Get pair setting for decimal places
+                const pairSetting = pairSettings.find(p => p.pair === trade.pair);
+                const decimals = pairSetting ? pairSetting.decimals : 5;
+                
+                html += `
+                    <tr>
+                        <td>${formattedDate}</td>
+                        <td>${trade.pair}</td>
+                        <td>${trade.position.toUpperCase()}</td>
+                        <td>${trade.openPrice.toFixed(decimals)}</td>
+                        <td>${trade.closePrice !== null ? trade.closePrice.toFixed(decimals) : '-'}</td>
+                        <td class="${trade.pips !== null && trade.pips >= 0 ? 'profit' : 'loss'}">${pips}</td>
+                        <td class="${trade.pl !== null && trade.pl >= 0 ? 'profit' : 'loss'}">${pl}</td>
+                    </tr>
+                `;
+            });
+            
+            html += `
+                    </tbody>
+                </table>
+            `;
+            
+            // Add notes if available
+            if (reportData.notes) {
+                html += `
+                    <div class="report-notes">
+                        <h3>Catatan</h3>
+                        <p>${reportData.notes}</p>
+                    </div>
+                `;
+            }
+            
+            // Add footer
+            html += `
+                <div class="report-footer">
+                    Laporan dihasilkan oleh aplikasi jurnal, bukan dari broker
+                </div>
+            `;
+            
+            // Update preview
+            preview.innerHTML = html;
+            preview.style.display = 'block';
+            placeholder.style.display = 'none';
+        }
+        
+        function renderPairSettingsTable() {
+            const tableBody = document.getElementById('pairSettingsTableBody');
+            
+            // Clear table
+            tableBody.innerHTML = '';
+            
+            // Add rows
+            pairSettings.forEach((setting, index) => {
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td>${setting.pair}</td>
+                    <td>${setting.decimals}</td>
+                    <td>${setting.pipValue}</td>
+                    <td>
+                        <button class="btn btn-sm btn-danger delete-pair-btn" data-index="${index}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                
+                tableBody.appendChild(row);
+            });
+            
+            // Add event listeners to delete buttons
+            document.querySelectorAll('.delete-pair-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = parseInt(this.getAttribute('data-index'));
+                    deletePair(index);
+                });
+            });
+        }
+        
+        function updatePairOptions() {
+            const tradePairSelect = document.getElementById('tradePair');
+            const editTradePairSelect = document.getElementById('editTradePair');
+            
+            // Clear options
+            tradePairSelect.innerHTML = '<option value="">Pilih Pair</option>';
+            editTradePairSelect.innerHTML = '<option value="">Pilih Pair</option>';
+            
+            // Add options
+            pairSettings.forEach(setting => {
+                const option1 = document.createElement('option');
+                option1.value = setting.pair;
+                option1.textContent = setting.pair;
+                tradePairSelect.appendChild(option1);
+                
+                const option2 = document.createElement('option');
+                option2.value = setting.pair;
+                option2.textContent = setting.pair;
+                editTradePairSelect.appendChild(option2);
+            });
+        }
+        
+        function updateHistoryPairFilter() {
+            const historyPairFilter = document.getElementById('historyPairFilter');
+            
+            // Clear options
+            historyPairFilter.innerHTML = '<option value="">Semua Pair</option>';
+            
+            // Get unique pairs from trades
+            const uniquePairs = [...new Set(trades.map(trade => trade.pair))];
+            
+            // Add options
+            uniquePairs.forEach(pair => {
+                const option = document.createElement('option');
+                option.value = pair;
+                option.textContent = pair;
+                historyPairFilter.appendChild(option);
+            });
+        }
+        
+        function getFilteredTrades(startDate, endDate, pair = '', onlyClosed = false) {
+            let filtered = [...trades];
+            
+            // Filter by date range
+            if (startDate) {
+                const start = new Date(startDate);
+                start.setHours(0, 0, 0, 0);
+                filtered = filtered.filter(trade => new Date(trade.date) >= start);
+            }
+            
+            if (endDate) {
+                const end = new Date(endDate);
+                end.setHours(23, 59, 59, 999);
+                filtered = filtered.filter(trade => new Date(trade.date) <= end);
+            }
+            
+            // Filter by pair
+            if (pair) {
+                filtered = filtered.filter(trade => trade.pair === pair);
+            }
+            
+            // Filter by closed trades only
+            if (onlyClosed) {
+                filtered = filtered.filter(trade => trade.closePrice !== null);
+            }
+            
+            // Sort by date (newest first)
+            filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            return filtered;
+        }
+        
+        function editTrade(id) {
+            // Find trade
+            const trade = trades.find(t => t.id === id);
+            if (!trade) {
+                alert('Trade tidak ditemukan');
+                return;
+            }
+            
+            // Populate form
+            document.getElementById('editTradeId').value = trade.id;
+            document.getElementById('editTradeDate').value = trade.date;
+            document.getElementById('editTradePair').value = trade.pair;
+            document.getElementById('editTradePosition').value = trade.position;
+            document.getElementById('editTradeLotSize').value = trade.lotSize;
+            document.getElementById('editTradeOpenPrice').value = trade.openPrice;
+            document.getElementById('editTradeClosePrice').value = trade.closePrice || '';
+            document.getElementById('editTradePL').value = trade.pl || '';
+            document.getElementById('editTradeNotes').value = trade.notes;
+            
+            // Show modal
+            editTradeModal.show();
+        }
+        
+        function deleteTrade(id) {
+            if (confirm('Apakah Anda yakin ingin menghapus trade ini?')) {
+                // Find trade index
+                const tradeIndex = trades.findIndex(t => t.id === id);
+                if (tradeIndex === -1) {
+                    alert('Trade tidak ditemukan');
+                    return;
+                }
+                
+                // Remove trade
+                trades.splice(tradeIndex, 1);
+                
+                // Save to storage
+                saveTradesToStorage();
+                
+                // Update UI
+                updateDashboardStats();
+                renderTradesTable();
+            }
+        }
+        
+        function deletePair(index) {
+            if (confirm('Apakah Anda yakin ingin menghapus pair ini?')) {
+                // Remove pair
+                pairSettings.splice(index, 1);
+                
+                // Save to storage
+                savePairSettingsToStorage();
+                
+                // Update UI
+                updatePairOptions();
+                renderPairSettingsTable();
+            }
+        }
+        
+        function saveTradesToStorage() {
+            localStorage.setItem('tradingJournalTrades', JSON.stringify(trades));
+        }
+        
+        function loadTradesFromStorage() {
+            const storedTrades = localStorage.getItem('tradingJournalTrades');
+            if (storedTrades) {
+                trades = JSON.parse(storedTrades);
+            }
+        }
+        
+        function savePairSettingsToStorage() {
+            localStorage.setItem('tradingJournalPairSettings', JSON.stringify(pairSettings));
+        }
+        
+        function loadPairSettingsFromStorage() {
+            const storedSettings = localStorage.getItem('tradingJournalPairSettings');
+            if (storedSettings) {
+                pairSettings = JSON.parse(storedSettings);
+            }
+        }
+    </script>
+</body>
+</html>
